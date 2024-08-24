@@ -3,12 +3,15 @@ extends Area2D
 const SPEED = 60.0
 
 const FOOD_DATA = {
-	"apple": "res://sprites/Apple.png",
-	"bacon": "res://sprites/Bacon.png",
-	"beer": "res://sprites/Beer.png",
-	"honey": "res://sprites/Honey.png",
-	"jam": "res://sprites/Jam.png"
+	"apple": "res://assets/sprites/foods/Apple.png",
+	"bacon": "res://assets/sprites/foods/Bacon.png",
+	"beer": "res://assets/sprites/foods/Beer.png",
+	"honey": "res://assets/sprites/foods/Honey.png",
+	"jam": "res://assets/sprites/foods/Jam.png"
 }
+
+func _process(delta):
+	self.position.y += SPEED * delta
 
 func create_food_at(position : Vector2):
 	var food_name = get_random_food_name()
@@ -28,6 +31,3 @@ func load_food_texture(food_name: String) -> Texture2D:
 func update_food_texture(texture: Texture2D):
 	var sprite_node = get_node("Sprite2D")
 	sprite_node.set_texture(texture)
-	
-func _process(delta):
-	self.position.y += SPEED * delta

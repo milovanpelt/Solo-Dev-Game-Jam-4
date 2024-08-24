@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://d04xwe4247yw"]
 
 [ext_resource type="Script" path="res://scripts/falling_food.gd" id="1_5dbct"]
-[ext_resource type="Texture2D" uid="uid://dwu187d4cxtjh" path="res://sprites/Jam.png" id="2_588uk"]
+[ext_resource type="Texture2D" uid="uid://dwu187d4cxtjh" path="res://assets/sprites/foods/Jam.png" id="2_588uk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amuaj"]
 size = Vector2(14, 16)
 
 [node name="FallingFood" type="Area2D"]
+z_index = 1
 script = ExtResource("1_5dbct")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
