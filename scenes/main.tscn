@@ -1,5 +1,24 @@
-[gd_scene format=3 uid="uid://cluoudgxnpomh"]
+[gd_scene load_steps=5 format=3 uid="uid://cluoudgxnpomh"]
+
+[ext_resource type="PackedScene" uid="uid://cmuwsk3igbk5v" path="res://scenes/vacuum_in.tscn" id="1_fnkbv"]
+[ext_resource type="PackedScene" uid="uid://d04xwe4247yw" path="res://scenes/falling_food.tscn" id="2_cutm3"]
+[ext_resource type="PackedScene" uid="uid://dvw6p27blebf" path="res://scenes/vacuum_destination.tscn" id="2_dxima"]
+[ext_resource type="PackedScene" uid="uid://c33hehv41qx8s" path="res://scenes/vacuum_out.tscn" id="4_agn4k"]
 
 [node name="World" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(0.919426, 1)
+zoom = Vector2(6, 6)
+
+[node name="Vacuum-In" parent="." instance=ExtResource("1_fnkbv")]
+position = Vector2(0, 46)
+
+[node name="VacuumDestination" parent="Vacuum-In" instance=ExtResource("2_dxima")]
+position = Vector2(76, -94)
+
+[node name="FallingFood" parent="." instance=ExtResource("2_cutm3")]
+position = Vector2(0, -43)
+
+[node name="Vacuum-Out" parent="." instance=ExtResource("4_agn4k")]
+position = Vector2(76, -48)
