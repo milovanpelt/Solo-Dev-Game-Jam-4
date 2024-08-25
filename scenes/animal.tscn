@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbegi0mr3phef"]
+
+[ext_resource type="Script" path="res://scripts/animal.gd" id="1_bgeto"]
+[ext_resource type="Texture2D" uid="uid://c12501oucly0k" path="res://assets/sprites/animals/snake.png" id="1_ib3m2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yrg6x"]
+radius = 70.1783
+
+[node name="Animal" type="Area2D"]
+script = ExtResource("1_bgeto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ib3m2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_yrg6x")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
