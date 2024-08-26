@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cluoudgxnpomh"]
+[gd_scene load_steps=10 format=3 uid="uid://cluoudgxnpomh"]
 
 [ext_resource type="PackedScene" uid="uid://cmuwsk3igbk5v" path="res://scenes/vacuum_in.tscn" id="1_fnkbv"]
 [ext_resource type="PackedScene" uid="uid://dvw6p27blebf" path="res://scenes/vacuum_destination.tscn" id="2_dxima"]
@@ -6,21 +6,26 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_03f7y"]
 [ext_resource type="FontFile" uid="uid://e3b5c7k8ktw6" path="res://assets/fonts/PixelOperator8.ttf" id="5_m7qhy"]
 [ext_resource type="PackedScene" uid="uid://dbegi0mr3phef" path="res://scenes/animal.tscn" id="5_xwr7p"]
+[ext_resource type="Texture2D" uid="uid://gads5n5enxf8" path="res://assets/sprites/framing_2.png" id="7_48ehk"]
+[ext_resource type="Script" path="res://scripts/world_end.gd" id="8_algrj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qfg8"]
 
 [node name="World" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-116.0]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.919426, 1)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="Vacuum-In" parent="." instance=ExtResource("1_fnkbv")]
-position = Vector2(-2, 95)
+position = Vector2(-108, 118)
 
 [node name="VacuumDestination" parent="Vacuum-In" instance=ExtResource("2_dxima")]
-position = Vector2(142, -195)
+position = Vector2(194, -242)
 
 [node name="Vacuum-Out" parent="." instance=ExtResource("4_agn4k")]
-position = Vector2(142, -99)
+position = Vector2(86, -124)
 
 [node name="GameManager" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -31,16 +36,28 @@ wait_time = 0.5
 autostart = true
 
 [node name="FoodCounter_Text" type="Label" parent="GameManager"]
-offset_left = -193.0
-offset_top = -105.0
-offset_right = -9.0
-offset_bottom = -30.0
+offset_left = -233.0
+offset_top = -131.0
+offset_right = -49.0
+offset_bottom = -56.0
 theme_override_fonts/font = ExtResource("5_m7qhy")
 text = "Food Eaten: 0"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Animal" parent="." instance=ExtResource("5_xwr7p")]
-position = Vector2(144, 72)
+position = Vector2(85, 94)
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(17, -1)
+texture = ExtResource("7_48ehk")
+
+[node name="WorldEnd" type="Area2D" parent="."]
+position = Vector2(-81, 137)
+script = ExtResource("8_algrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEnd"]
+shape = SubResource("WorldBoundaryShape2D_7qfg8")
 
 [connection signal="timeout" from="GameManager/SpawnTimer" to="GameManager" method="_on_spawn_timer_timeout"]
+[connection signal="area_entered" from="WorldEnd" to="WorldEnd" method="_on_area_entered"]

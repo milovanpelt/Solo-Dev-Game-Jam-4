@@ -8,7 +8,7 @@ const FALLING_FOOD = preload("res://scenes/falling_food.tscn")
 func _on_spawn_timer_timeout():
 	var falling_food_instance = FALLING_FOOD.instantiate()
 	
-	var falling_food_x_position = randf_range(-200, 0)
+	var falling_food_x_position = randf_range(-225, 15)
 	var falling_food_y_position = -100
 	var falling_food_spawn_position = Vector2(falling_food_x_position, falling_food_y_position)
 	
