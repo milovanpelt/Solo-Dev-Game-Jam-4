@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cluoudgxnpomh"]
+[gd_scene load_steps=13 format=3 uid="uid://cluoudgxnpomh"]
 
 [ext_resource type="PackedScene" uid="uid://cmuwsk3igbk5v" path="res://scenes/vacuum_in.tscn" id="1_fnkbv"]
 [ext_resource type="PackedScene" uid="uid://dvw6p27blebf" path="res://scenes/vacuum_destination.tscn" id="2_dxima"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="5_03f7y"]
 [ext_resource type="FontFile" uid="uid://e3b5c7k8ktw6" path="res://assets/fonts/PixelOperator8.ttf" id="5_m7qhy"]
 [ext_resource type="PackedScene" uid="uid://dbegi0mr3phef" path="res://scenes/animal.tscn" id="5_xwr7p"]
+[ext_resource type="Texture2D" uid="uid://duja2te18ugkc" path="res://assets/sprites/foods/Apple.png" id="6_s627w"]
 [ext_resource type="Texture2D" uid="uid://gads5n5enxf8" path="res://assets/sprites/framing_2.png" id="7_48ehk"]
+[ext_resource type="FontFile" uid="uid://vxbo7dfwbvch" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="7_64fcs"]
 [ext_resource type="Script" path="res://scripts/world_end.gd" id="8_algrj"]
+[ext_resource type="Texture2D" uid="uid://dg5sg47nkfkpn" path="res://assets/sprites/foods/Bacon.png" id="8_ogdxx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7qfg8"]
 
@@ -15,8 +18,9 @@
 metadata/_edit_horizontal_guides_ = [-116.0]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(16, 0)
 scale = Vector2(0.919426, 1)
-zoom = Vector2(2, 2)
+zoom = Vector2(2.2, 2.2)
 
 [node name="Vacuum-In" parent="." instance=ExtResource("1_fnkbv")]
 position = Vector2(-108, 118)
@@ -45,15 +49,47 @@ text = "Food Eaten: 0"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Food_Requests" type="Node2D" parent="GameManager"]
+
+[node name="Food_Request_1" type="Sprite2D" parent="GameManager/Food_Requests"]
+position = Vector2(176, 49)
+scale = Vector2(2, 2)
+texture = ExtResource("6_s627w")
+
+[node name="Food_Request_1_Text" type="Label" parent="GameManager/Food_Requests/Food_Request_1"]
+offset_left = 10.5
+offset_top = -6.0
+offset_right = 36.5
+offset_bottom = 17.0
+scale = Vector2(0.917418, 0.987101)
+theme_override_fonts/font = ExtResource("7_64fcs")
+theme_override_font_sizes/font_size = 16
+text = "2
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Food_Request_2" type="Sprite2D" parent="GameManager/Food_Requests"]
+position = Vector2(176, 107)
+scale = Vector2(2, 2)
+texture = ExtResource("8_ogdxx")
+
+[node name="Food_Request_2_Text" type="Label" parent="GameManager/Food_Requests/Food_Request_2"]
+offset_left = 11.0
+offset_top = -7.0
+offset_right = 51.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("7_64fcs")
+text = "5"
+
 [node name="Animal" parent="." instance=ExtResource("5_xwr7p")]
-position = Vector2(85, 94)
+position = Vector2(88, 94)
 
 [node name="Frame" type="Sprite2D" parent="."]
 position = Vector2(17, -1)
 texture = ExtResource("7_48ehk")
 
 [node name="WorldEnd" type="Area2D" parent="."]
-position = Vector2(-81, 137)
+position = Vector2(-81, 134)
 script = ExtResource("8_algrj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEnd"]
