@@ -1,6 +1,7 @@
 extends Area2D
 
-const SPEED = 60.0
+var speed = 60.0
+var texture_scale: Vector2 = Vector2(1, 1)
 
 const FOOD_DATA = {
 	"apple": "res://assets/sprites/foods/Apple.png",
@@ -11,7 +12,11 @@ const FOOD_DATA = {
 }
 
 func _process(delta):
-	self.position.y += SPEED * delta
+	self.position.y += speed * delta
+	
+func delete_food():
+	var sprite_node = get_node("Sprite2D")
+	sprite_node.texture = null
 
 func create_food_at(position : Vector2):
 	var food_name = get_random_food_name()
@@ -31,3 +36,4 @@ func load_food_texture(food_name: String) -> Texture2D:
 func update_food_texture(texture: Texture2D):
 	var sprite_node = get_node("Sprite2D")
 	sprite_node.set_texture(texture)
+	sprite_node.scale = texture_scale
