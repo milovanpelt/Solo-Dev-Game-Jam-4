@@ -38,7 +38,7 @@ func _on_spawn_timer_timeout():
 
 func add_food_score():
 	current_food_score += food_score_addition
-	food_score_text.text = "Food Eaten: " + str(current_food_score)
+	food_score_text.text = "Score: " + str(current_food_score)
 	
 func create_animal_food():
 	# first one
