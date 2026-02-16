@@ -88,4 +88,3 @@ func checkfood(food_name: String):
 	if (food_name == food_request_2_name && current_food_request_2_number != food_request_2_number):
 		current_food_request_2_number += 1
 		add_food_score()
-		
